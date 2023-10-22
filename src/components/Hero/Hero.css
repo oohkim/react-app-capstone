@@ -1,0 +1,47 @@
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.trending-title {
+    text-align: center;
+    margin: 50px 0px;
+    font-size: 40px;
+    font-weight: 900;
+  }
+
+.slick-slider {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.blog-slide {
+    display: flex;
+    margin: 0 auto;
+}
+
+.blog-details {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+}
+
+.blog-details h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.blog-details p {
+    font-size: 14px;
+    color: gray;
+}
+
+.slick-slide img {
+    height: 400px;
+    object-fit: cover;
+    align-items: center;
+}

@@ -1,0 +1,29 @@
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    margin-top: 100px;
+    text-align: center;
+  }
+  
+  .social-icons {
+    margin-bottom: 20px;
+  }
+  
+  .social-icons a {
+    font-size: 24px;
+    color: #73C1C6;;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  .copyright {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+  }
+  
