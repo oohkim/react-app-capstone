@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Register.css";
 import axios from "axios";
 
@@ -13,6 +13,14 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [registrationError, setRegistrationError] = useState(null);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +38,10 @@ const Register = () => {
         email: email,
         password: password,
         password_confirmation: confirmPassword,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       })
       .then((response) => {
         if (response.data && response.data.success) {
@@ -54,7 +66,6 @@ const Register = () => {
           password: password,
           password_confirmation: confirmPassword,
         });
-
       });
   };
 
