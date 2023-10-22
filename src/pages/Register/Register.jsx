@@ -23,12 +23,13 @@ const Register = () => {
     }
 
     axios
-      .post(apiUrl + "/register", {
+      .post(`${apiUrl}/api/register`, {
         first_name: firstName,
         last_name: lastName,
         username: username,
         email: email,
         password: password,
+        password_confirmation: confirmPassword,
       })
       .then((response) => {
         if (response.data && response.data.success) {
@@ -36,12 +37,24 @@ const Register = () => {
           setRegistrationError(null);
         } else {
           setRegistrationSuccess(false);
-          setRegistrationError("Registration failed. Please check your information.");
+          setRegistrationError(
+            "Registration failed. Please check your information."
+          );
         }
       })
       .catch((error) => {
         setRegistrationSuccess(false);
         setRegistrationError("Registration failed. Please try again later.");
+
+        console.log("Data being sent:", {
+          first_name: firstName,
+          last_name: lastName,
+          username: username,
+          email: email,
+          password: password,
+          password_confirmation: confirmPassword,
+        });
+
       });
   };
 
@@ -49,8 +62,12 @@ const Register = () => {
     <div className="signup-container">
       <form onSubmit={handleSubmit} className="signup-form">
         <h2>Create an Account</h2>
-        {registrationError && <div className="error-message">{registrationError}</div>}
-        {registrationSuccess && <div className="success-message">Registration Successful!</div>}
+        {registrationError && (
+          <div className="error-message">{registrationError}</div>
+        )}
+        {registrationSuccess && (
+          <div className="success-message">Registration Successful!</div>
+        )}
         <div className="name-group">
           <div className="form-group">
             <input
@@ -114,8 +131,8 @@ const Register = () => {
           />
         </div>
         <p className="terms">
-          By clicking 'Sign Up,' you are acknowledging and accepting our
-          Terms of Service, Privacy Policy, and Cookie Policy.
+          By clicking 'Sign Up,' you are acknowledging and accepting our Terms
+          of Service, Privacy Policy, and Cookie Policy.
         </p>
         <button className="submit-button" type="submit">
           Sign Up
