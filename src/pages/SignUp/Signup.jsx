@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import './Signup.css';
+import React, { useState } from "react";
+import "./Signup.css";
+import axios from "axios";
 
 const Signup = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,11 +18,20 @@ const Signup = () => {
       return;
     }
 
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Username:', username);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    axios
+      .post("/register", {
+        first_name: firstName,
+        last_name: lastName,
+        username: username,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log("Registration Successful");
+      })
+      .catch((error) => {
+        console.error("Registration Error: ", error);
+      });
   };
 
   return (
@@ -90,8 +100,13 @@ const Signup = () => {
             required
           />
         </div>
-        <p className="terms">By clicking 'Sign Up,' you are acknowledging and accepting our Terms of Service, Privacy Policy, and Cookie Policy.</p>
-        <button className="submit-button" type="submit">Sign Up</button>
+        <p className="terms">
+          By clicking 'Sign Up,' you are acknowledging and accepting our
+          Terms of Service, Privacy Policy, and Cookie Policy.
+        </p>
+        <button className="submit-button" type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );

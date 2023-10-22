@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -8,8 +9,18 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
+
+    axios
+      .post("/login", {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        console.log("Login Successful");
+      })
+      .catch((error) => {
+        console.error("Login Error: ", error);
+      });
   };
 
   return (
@@ -36,7 +47,9 @@ const Login = () => {
             required
           />
         </div>
-        <button className="log-button" type="submit">Log In</button>
+        <button className="log-button" type="submit">
+          Log In
+        </button>
         <p className="forgot-pass">
           <a href="#">Forgot Password?</a>
         </p>
