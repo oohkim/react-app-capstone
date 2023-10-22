@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -10,28 +10,40 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(null);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const requestBody = {
+      username: username,
+      password: password,
+    };
+
     axios
-      .post(apiUrl + "/login", {
-        username: username,
-        password: password,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          setLoginSuccess(true);
-          setLoginError(null);
-        } else {
-          setLoginSuccess(false);
-          setLoginError("Login failed. Please check your credentials.");
-        }
-      })
-      .catch((error) => {
-        setLoginSuccess(false);
-        setLoginError("Login failed. Please try again later.");
-      });
+  .post(`${apiUrl}api/login`, requestBody)
+  .then((response) => {
+    if (response.status === 200) {
+      setLoginSuccess(true);
+      setLoginError(null);
+      navigate("/");
+    } else {
+      setLoginSuccess(false);
+      setLoginError("Login failed. Please check your credentials.");
+    }
+  })
+
+  .catch((error) => {
+    setLoginSuccess(false);
+    if (error.response) {
+      setLoginError("Login failed. Please check your credentials.");
+    } else {
+      // Log the error for debugging
+      console.log("Network error:", error);
+      setLoginError("Network error. Please try again later.");
+    }
+  });
+
   };
 
   return (
