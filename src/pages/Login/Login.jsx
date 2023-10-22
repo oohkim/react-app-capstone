@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
 
     const requestBody = {
-      username: username,
+      email: username,
       password: password,
     };
 
