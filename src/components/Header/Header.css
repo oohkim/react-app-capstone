@@ -129,6 +129,7 @@
   height: 20px;
   border: none;
   font-size: 10px;
+  color: #73C1C6;
 }
 
 .login-button a {
@@ -138,4 +139,5 @@
 
 .login-button:hover {
   background-color: transparent;
+  color: #73C1C6
 }

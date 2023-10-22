@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -11,6 +12,17 @@ const Login = () => {
   const [loginError, setLoginError] = useState(null);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    navigate("/");
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    navigate("/login");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,29 +33,26 @@ const Login = () => {
     };
 
     axios
-  .post(`${apiUrl}/api/login`, requestBody)
-  .then((response) => {
-    if (response.status === 200) {
-      setLoginSuccess(true);
-      setLoginError(null);
-      navigate("/");
-    } else {
-      setLoginSuccess(false);
-      setLoginError("Login failed. Please check your credentials.");
-    }
-  })
-
-  .catch((error) => {
-    setLoginSuccess(false);
-    if (error.response) {
-      setLoginError("Login failed. Please check your credentials.");
-    } else {
-      // Log the error for debugging
-      console.log("Network error:", error);
-      setLoginError("Network error. Please try again later.");
-    }
-  });
-
+      .post(`${apiUrl}/api/login`, requestBody)
+      .then((response) => {
+        if (response.status === 200) {
+          setLoginSuccess(true);
+          setLoginError(null);
+          handleLogin();
+        } else {
+          setLoginSuccess(false);
+          setLoginError("Login failed. Please check your credentials.");
+        }
+      })
+      .catch((error) => {
+        setLoginSuccess(false);
+        if (error.response) {
+          setLoginError("Login failed. Please check your credentials.");
+        } else {
+          console.log("Network error:", error);
+          setLoginError("Network error. Please try again later.");
+        }
+      });
   };
 
   return (
@@ -51,17 +60,25 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="login-form">
         <h2>Login</h2>
         {loginError && <div className="error-message">{loginError}</div>}
-        {loginSuccess && <div className="success-message">Login Successful!</div>}
-        <div className="form-group">
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Email Address"
-            required
-          />
-        </div>
+        {loginSuccess && (
+          <div className="success-message">Login Successful!</div>
+        )}
+        {isAuthenticated ? (
+          <button className="log-button" onClick={handleLogout}>
+            Logout
+          </button>
+        ) : (
+          <div className="form-group">
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Email Address"
+              required
+            />
+          </div>
+        )}
         <div className="form-group">
           <input
             type="password"
@@ -73,7 +90,7 @@ const Login = () => {
           />
         </div>
         <button className="log-button" type="submit">
-          Log In
+          {isAuthenticated ? "Log Out" : "Log In"}
         </button>
         <p className="forgot-pass">
           <a href="#">Forgot Password?</a>

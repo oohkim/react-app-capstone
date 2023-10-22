@@ -13,11 +13,15 @@ import { Person } from 'react-bootstrap-icons';
 import { Search } from "react-bootstrap-icons";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [showEditor, setShowEditor] = useState(false);
   const [blogTitle, setBlogTitle] = useState("");
   const [blogContent, setBlogContent] = useState("");
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   const handleShowEditor = () => {
     setShowEditor(true);
@@ -29,6 +33,11 @@ const Header = () => {
 
   const handlePublishBlog = () => {
     handleCloseEditor();
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    navigate('/login');
   };
 
   return (
@@ -66,16 +75,21 @@ const Header = () => {
             >
               Write
             </Button>
-            <Button variant="outline-light" className="login-button">
-              <Link to="/login">
-              <Person size={20} style={{ color: 'white' }} /> Login
-              </Link>
-            </Button>
+            {isAuthenticated ? (
+              <Button variant="outline-light" className="login-button" onClick={handleLogout}>
+                <Person size={20} style={{ color: 'white' }} /> Logout
+              </Button>
+            ) : (
+              <Button variant="outline-light" className="login-button">
+                <Link to="/login">
+                  <Person size={20} style={{ color: 'white' }} /> Login
+                </Link>
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
 
-      {/* Modal for Blog Editor */}
       <Modal show={showEditor} onHide={handleCloseEditor}>
         <Modal.Header closeButton>
           <Modal.Title>Write a Blog</Modal.Title>
@@ -116,8 +130,7 @@ const Header = () => {
               <Form.Control
                 type="file"
                 accept="image/*"
-                onChange={(e) => {
-                }}
+                onChange={(e) => {}}
               />
             </Form.Group>
           </Form>
