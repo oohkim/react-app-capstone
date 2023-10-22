@@ -3,23 +3,34 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(null);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post("/login", {
+      .post(apiUrl + "/login", {
         username: username,
         password: password,
       })
       .then((response) => {
-        console.log("Login Successful");
+        if (response.data && response.data.success) {
+          setLoginSuccess(true);
+          setLoginError(null);
+        } else {
+          setLoginSuccess(false);
+          setLoginError("Login failed. Please check your credentials.");
+        }
       })
       .catch((error) => {
-        console.error("Login Error: ", error);
+        setLoginSuccess(false);
+        setLoginError("Login failed. Please try again later.");
       });
   };
 
@@ -27,6 +38,8 @@ const Login = () => {
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-form">
         <h2>Login</h2>
+        {loginError && <div className="error-message">{loginError}</div>}
+        {loginSuccess && <div className="success-message">Login Successful!</div>}
         <div className="form-group">
           <input
             type="text"
