@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Signup.css";
+import "./Register.css";
 import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -23,7 +23,7 @@ const Signup = () => {
     }
 
     axios
-      .post(apiUrl + "/signup", {
+      .post(apiUrl + "/register", {
         first_name: firstName,
         last_name: lastName,
         username: username,
