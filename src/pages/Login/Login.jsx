@@ -21,7 +21,7 @@ const Login = () => {
     };
 
     axios
-  .post(`${apiUrl}api/login`, requestBody)
+  .post(`${apiUrl}/api/login`, requestBody)
   .then((response) => {
     if (response.status === 200) {
       setLoginSuccess(true);
