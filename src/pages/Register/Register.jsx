@@ -4,7 +4,7 @@ import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const Signup = () => {
+const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -125,4 +125,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;
