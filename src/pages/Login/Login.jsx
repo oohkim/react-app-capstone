@@ -20,7 +20,7 @@ const Login = () => {
         password: password,
       })
       .then((response) => {
-        if (response.data && response.data.success) {
+        if (response.status === 200) {
           setLoginSuccess(true);
           setLoginError(null);
         } else {

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Signup.css";
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -9,17 +11,19 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [registrationError, setRegistrationError] = useState(null);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Password and Confirm Password don't match");
+      setRegistrationError("Password and Confirm Password don't match");
       return;
     }
 
     axios
-      .post("/register", {
+      .post(apiUrl + "/signup", {
         first_name: firstName,
         last_name: lastName,
         username: username,
@@ -27,10 +31,17 @@ const Signup = () => {
         password: password,
       })
       .then((response) => {
-        console.log("Registration Successful");
+        if (response.data && response.data.success) {
+          setRegistrationSuccess(true);
+          setRegistrationError(null);
+        } else {
+          setRegistrationSuccess(false);
+          setRegistrationError("Registration failed. Please check your information.");
+        }
       })
       .catch((error) => {
-        console.error("Registration Error: ", error);
+        setRegistrationSuccess(false);
+        setRegistrationError("Registration failed. Please try again later.");
       });
   };
 
@@ -38,6 +49,8 @@ const Signup = () => {
     <div className="signup-container">
       <form onSubmit={handleSubmit} className="signup-form">
         <h2>Create an Account</h2>
+        {registrationError && <div className="error-message">{registrationError}</div>}
+        {registrationSuccess && <div className="success-message">Registration Successful!</div>}
         <div className="name-group">
           <div className="form-group">
             <input
