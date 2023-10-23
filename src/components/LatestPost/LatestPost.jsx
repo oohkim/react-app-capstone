@@ -48,6 +48,20 @@ const LatestPosts = () => {
       date: "October 15, 2023",
       image: image2,
     },
+    {
+      id: 7,
+      title: "Lorem Ipsum Post 1",
+      author: "John Doe",
+      date: "October 10, 2023",
+      image: image1,
+    },
+    {
+      id: 8,
+      title: "Lorem Ipsum Post 2",
+      author: "Jane Smith",
+      date: "October 15, 2023",
+      image: image2,
+    },
   ];
 
   const suggestedUsers = [
