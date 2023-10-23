@@ -1,47 +1,55 @@
-.home-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-}
-
+/* Hero.css */
 .trending-title {
     text-align: center;
-    margin: 50px 0px;
-    font-size: 40px;
-    font-weight: 900;
+    margin-top: 20px;
+  }
+  
+  /* Style the Carousel */
+  .carousel {
+    max-width: 800px; /* Adjust this value based on your design */
+    margin: 0 auto;
   }
 
-.slick-slider {
-    margin: 0 auto;
-    max-width: 600px;
+  .carousel-control-prev,
+.carousel-control-next {
+  display: none;
 }
-
-.blog-slide {
-    display: flex;
-    margin: 0 auto;
-}
-
-.blog-details {
-    flex: 1;
+  
+  .carousel-caption {
+    /* background-color: rgba(0, 0, 0, 0.7);  */
+    color: white; /* Text color for captions */
+    text-align: left; /* Align captions to the left */
+  
+    /* Add padding and adjust other styles for the captions */
     padding: 20px;
-    text-align: left;
-}
-
-.blog-details h3 {
+    left: 0; /* Position captions on the left side */
+    right: auto; /* Reset right positioning */
+    top: 50%; /* Center captions vertically */
+    transform: translateY(-50%); /* Center captions vertically */
+  }
+  
+  /* Style the image inside each slide */
+  .carousel-item img {
+    width: 60%; /* Make the image a bit smaller */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+    margin-right: 20px; /* Spacing between image and captions */
+  }
+  
+  .carousel-caption p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  .carousel-caption h3 {
     font-size: 18px;
     font-weight: bold;
-    margin-top: 2rem;
-    text-align: left;
-}
+    margin: 10px 0;
+  }
+  
+  .carousel-caption p:last-child {
+    font-size: 16px;
+    margin: 10px 0;
+  }
 
-.blog-details p {
-    font-size: 14px;
-    color: gray;
-}
-
-.slick-slide img {
-    height: 400px;
-    object-fit: cover;
-    align-items: center;
-}
+  
