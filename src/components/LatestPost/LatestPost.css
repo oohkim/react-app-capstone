@@ -51,19 +51,25 @@
 
 .post-date {
     color: #666;
-    font-size: 12px;
+    font-size: 10px;
     margin-bottom: 5px;
+    font-style: italic;
 }
 
 .post-author {
     color: #999;
-    font-size: 10px;
+    font-size: 13px;
+}
+
+.post-author strong {
+    font-weight: bold;
+    color: #000;
 }
 
 .post-title {
-    font-size: 18px;
+    font-size: 22px;
     margin-top: 10px;
-    color: #333;
+    color: #2a7075;
 }
 
 /* Suggested Users */
@@ -96,8 +102,8 @@
 }
 
 .user-avatar img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
@@ -108,7 +114,7 @@
 
 .user-name {
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     color: #333;
 }
 
@@ -168,6 +174,10 @@
     margin-bottom: 10px;
 }
 
+.popular-post-date {
+    font-style: italic;
+}
+
 .popular-post-author {
     color: #999;
     font-size: 14px;
@@ -176,7 +186,7 @@
 }
 
 .popular-post-category {
-    color: #000;
+    color: #2a7075;
     font-weight: bold;
 }
 
@@ -263,4 +273,25 @@
 
 .pagination .break {
     pointer-events: none;
+}
+
+
+.post-interactions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.post-likes,
+.post-comments {
+    display: flex;
+    align-items: center;
+}
+
+.post-likes i,
+.post-comments i {
+    margin-right: 5px;
+    font-size: 16px;
+    color: #73C1C6;
+    font-weight: bold;
 }
