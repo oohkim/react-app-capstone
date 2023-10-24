@@ -2,17 +2,55 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../../assets/blob-scene-haikei (1).png");
   height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.login-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-image-container img {
+  max-width: 80%;
+  max-height: 80%;
 }
 
 .login-form {
+  flex: 0.5;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  width: 27%;
-  height: 50%;
+  margin: 0 150px;
+  margin-left: 0px;
+}
+
+.login-options {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.or-text {
+  font-size: 15px;
+  color: #636161;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons img {
+  width: 32px;
+  height: 32px;
+  margin: 0 10px;
+  cursor: pointer;
 }
 
 h2 {
@@ -60,7 +98,7 @@ h2 {
 .forgot-pass a {
   color: #73C1C6;
   text-decoration: none;
-  margin: 50px;
+  margin: 10px 0;
 }
 
 .register-link {

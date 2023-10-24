@@ -1,5 +1,5 @@
 .container {
-    margin: 5rem;
+    margin: 4rem;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -139,6 +139,7 @@
 .popular-posts-title {
     font-size: 18px;
     color: #2a7075;
+    margin: 50px 0px;
 }
 
 .popular-posts-list {
@@ -202,9 +203,9 @@
 
 .tags-title {
     font-size: 18px;
-    margin-bottom: 10px;
     color: #2a7075;
     margin-left: 10px;
+    margin: 50px 0px;
 }
 
 .tag-buttons {
@@ -228,4 +229,33 @@
 
 .tag-button:hover {
     background-color: #48888E;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 10px;
+    padding: 0;
+}
+
+.pagination li.active {
+    background-color: #73C1C6;
+    border-radius: 50%;
+    padding: 15px;
+    color: #fff;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination .break {
+    pointer-events: none;
 }

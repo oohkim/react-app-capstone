@@ -19,6 +19,7 @@ const Hero = () => {
           "Photography isn't just about individual images; it's about telling a story. Photojournalists, for example, use their craft to document events and convey powerful narratives. Every photograph is a story waiting to be shared.",
         image: image1,
         trending: true,
+        author: 'John Doe',
       },
       {
         title: 'Blog 2',
@@ -27,6 +28,16 @@ const Hero = () => {
         content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: image2,
         trending: true,
+        author: 'Jane Smith',
+      },
+      {
+        title: 'Blog 3',
+        date: '2023-10-21',
+        category: 'Travel',
+        content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        image: image1,
+        trending: true,
+        author: 'Robert Johnson',
       },
     ];
 
@@ -56,6 +67,7 @@ const Hero = () => {
             </div>
             <div className="slider-details">
               <p className="date">Date Created: {blog.date}</p>
+              <p className="author">Author: <span style={{ fontWeight: 'bold' }}>{blog.author}</span></p>
               <p className="category">Category: {blog.category}</p>
               <h2 className="title">"{blog.title}"</h2>
               <p className="content">{blog.content}</p>

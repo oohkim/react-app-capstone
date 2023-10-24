@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LatestPost.css";
+import ReactPaginate from "react-paginate";
 import image1 from "../../assets/wallpaper.jpg";
 import image2 from "../../assets/wallpaper2.jpeg";
 import user1 from "../../assets/head.jpeg";
 
 const LatestPosts = () => {
+  const postsPerPage = 2;
+  const [currentPage, setCurrentPage] = useState(0);
+
   const latestPosts = [
     {
       id: 1,
@@ -62,7 +66,30 @@ const LatestPosts = () => {
       date: "October 15, 2023",
       image: image2,
     },
+    {
+      id: 9,
+      title: "Lorem Ipsum Post 1",
+      author: "John Doe",
+      date: "October 10, 2023",
+      image: image1,
+    },
+    {
+      id: 10,
+      title: "Lorem Ipsum Post 2",
+      author: "Jane Smith",
+      date: "October 15, 2023",
+      image: image2,
+    },
   ];
+
+  const offset = currentPage * postsPerPage;
+  const currentPosts = latestPosts.slice(offset, offset + postsPerPage);
+
+  const pageCount = Math.ceil(latestPosts.length / postsPerPage);
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
 
   const suggestedUsers = [
     {
@@ -192,6 +219,28 @@ const LatestPosts = () => {
           </div>
         </div>
       </div>
+      <ReactPaginate
+        previousLabel={
+          <i
+            className="bx bx-chevron-left"
+            style={{ fontSize: "30px", color: "#2a7075" }}
+          ></i>
+        }
+        nextLabel={
+          <i
+            className="bx bx-chevron-right"
+            style={{ fontSize: "30px", color: "#2a7075" }}
+          ></i>
+        }
+        breakLabel={"..."}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination"}
+        subContainerClassName={"pages pagination"}
+        activeClassName={"active"}
+      />
     </div>
   );
 };

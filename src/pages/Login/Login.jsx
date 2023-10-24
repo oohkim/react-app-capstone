@@ -3,6 +3,10 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
+import loginImage from "../../assets/login.svg";
+import googleIcon from "../../assets/google.webp";
+import facebookIcon from "../../assets/facebook.png";
+import linkedinIcon from "../../assets/linkedin.png";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -57,6 +61,9 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      <div className="login-image-container">
+        <img src={loginImage} alt="Login" />
+      </div>
       <form onSubmit={handleSubmit} className="login-form">
         <h2>Login</h2>
         {loginError && <div className="error-message">{loginError}</div>}
@@ -95,6 +102,15 @@ const Login = () => {
         <p className="forgot-pass">
           <a href="#">Forgot Password?</a>
         </p>
+        <hr />
+        <div className="login-options">
+          <span className="or-text">or login with</span>
+          <div className="social-icons">
+            <img src={googleIcon} alt="Google" />
+            <img src={facebookIcon} alt="Facebook" />
+            <img src={linkedinIcon} alt="LinkedIn" />
+          </div>
+        </div>
         <div className="register-link">
           <p>
             Don't have an account? <Link to="/register">Sign Up.</Link>
