@@ -1,55 +1,81 @@
-/* Hero.css */
-.trending-title {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  /* Style the Carousel */
-  .carousel {
-    max-width: 800px; /* Adjust this value based on your design */
-    margin: 0 auto;
-  }
-
-  .carousel-control-prev,
-.carousel-control-next {
-  display: none;
+/* Style for the slider container */
+.slider-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: hidden;
+  width: 100%; /* Make sure the container is 100% width */
 }
-  
-  .carousel-caption {
-    /* background-color: rgba(0, 0, 0, 0.7);  */
-    color: white; /* Text color for captions */
-    text-align: left; /* Align captions to the left */
-  
-    /* Add padding and adjust other styles for the captions */
-    padding: 20px;
-    left: 0; /* Position captions on the left side */
-    right: auto; /* Reset right positioning */
-    top: 50%; /* Center captions vertically */
-    transform: translateY(-50%); /* Center captions vertically */
-  }
-  
-  /* Style the image inside each slide */
-  .carousel-item img {
-    width: 60%; /* Make the image a bit smaller */
-    display: block;
-    margin: 0 auto; /* Center the image horizontally */
-    margin-right: 20px; /* Spacing between image and captions */
-  }
-  
-  .carousel-caption p {
-    font-size: 14px;
-    margin: 5px 0;
-  }
-  
-  .carousel-caption h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-  
-  .carousel-caption p:last-child {
-    font-size: 16px;
-    margin: 10px 0;
-  }
 
-  
+/* Style for each slide */
+.slider-slide {
+  display: flex;
+  align-items: center;
+  /* background-color: #f5f5f5;
+  border: 1px solid #ccc; */
+  border-radius: 5px;
+  padding: 150px;
+  /* margin: 50px; */
+  overflow: hidden;
+}
+
+.slide-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style for the image in each slide */
+.slider-image img {
+  max-width: 100%;
+  max-height: 300px; /* Adjust the maximum height as needed */
+  height: auto;
+  margin-right: 20px;
+}
+
+/* Style for the details in each slide */
+.slider-details {
+  flex: 1;
+}
+
+/* Style for the date */
+.date {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Style for the category */
+.category {
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+}
+
+/* Style for the title */
+.title {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+/* Style for the content */
+.content {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* Style for the slider dots */
+.slick-dots {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Style for each dot */
+.slick-dots li button:before {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Style for active dots */
+.slick-dots li.slick-active button:before {
+  color: #73C1C6;
+}

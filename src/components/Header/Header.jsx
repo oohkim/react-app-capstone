@@ -42,6 +42,9 @@ const Header = () => {
 
   const handleCloseEditor = () => {
     setShowEditor(false);
+    setBlogTitle("");
+    setBlogContent("");
+    setError("");
   };
 
   const handlePublishBlog = () => {
@@ -77,6 +80,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
     setIsAuthenticated(false);
     navigate('/');
   };
@@ -187,7 +191,7 @@ const Header = () => {
           <Button
               variant="primary"
               onClick={handlePublishBlog}
-              disabled={loading} // Disable the button while loading
+              disabled={loading}
             >
               {loading ? "Publishing..." : "Publish"}
             </Button>
