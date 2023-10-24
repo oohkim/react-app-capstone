@@ -5,15 +5,17 @@ import Footer from "./components/Footer/Footer";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
+import Blogs from "./pages/Blogs/Blogs";
 import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<HomeWithHeaderAndFooter />} />
+        <Route path="/" element={<HomeWithHeaderAndFooter />} />
+        <Route path="/blogs" element={<Blogs />} />
       </Routes>
     </AuthProvider>
   );

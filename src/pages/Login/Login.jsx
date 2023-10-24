@@ -16,12 +16,12 @@ const Login = () => {
 
   const handleLogin = () => {
     setIsAuthenticated(true);
-    navigate("/home");
+    navigate("/");
   };
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    navigate("/");
+    navigate("/login");
   };
 
   const handleSubmit = (e) => {

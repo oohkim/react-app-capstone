@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Navbar,
@@ -16,12 +17,24 @@ import { Link } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Header = () => {
   const navigate = useNavigate();
   const [showEditor, setShowEditor] = useState(false);
   const [blogTitle, setBlogTitle] = useState("");
   const [blogContent, setBlogContent] = useState("");
   const { isAuthenticated, setIsAuthenticated } = useAuth();
+  const [token, setToken] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   const handleShowEditor = () => {
     setShowEditor(true);
@@ -32,7 +45,35 @@ const Header = () => {
   };
 
   const handlePublishBlog = () => {
-    handleCloseEditor();
+    if (!blogTitle || !blogContent) {
+      setError("Blog title and content are required.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    axios
+      .post(`${apiUrl}/api/posts`, {
+        title: blogTitle,
+        content: blogContent,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((response) => {
+        console.log("Blog post created: ", response.data);
+        handleCloseEditor();
+        navigate('/blogs');
+      })
+      .catch((error) => {
+        console.error("Error creating blog post: ", error);
+        setError("An error occurred while publishing the blog.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const handleLogout = () => {
@@ -54,8 +95,8 @@ const Header = () => {
           </div>
         </div>
         <Navbar.Brand href="#home" className="center-logo">
-        <i className="bx bx-pen pen-icon"></i>
-         <span style={{ color: '#73C1C6' }}>Write</span>Scape
+          <i className="bx bx-pen pen-icon"></i>
+          <span style={{ color: '#73C1C6' }}>Write</span>Scape
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -76,7 +117,11 @@ const Header = () => {
               Write
             </Button>
             {isAuthenticated ? (
-              <Button variant="outline-light" className="login-button" onClick={handleLogout}>
+              <Button
+                variant="outline-light"
+                className="login-button"
+                onClick={handleLogout}
+              >
                 <Person size={20} style={{ color: 'white' }} /> Logout
               </Button>
             ) : (
@@ -139,9 +184,13 @@ const Header = () => {
           <Button variant="secondary" onClick={handleCloseEditor}>
             Close
           </Button>
-          <Button variant="primary" onClick={handlePublishBlog}>
-            Publish
-          </Button>
+          <Button
+              variant="primary"
+              onClick={handlePublishBlog}
+              disabled={loading} // Disable the button while loading
+            >
+              {loading ? "Publishing..." : "Publish"}
+            </Button>
         </Modal.Footer>
       </Modal>
     </div>
