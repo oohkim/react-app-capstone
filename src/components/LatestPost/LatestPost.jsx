@@ -188,9 +188,9 @@ const LatestPosts = () => {
                   <div className="popular-post" key={blog.id}>
                     <h3 className="popular-post-title">{blog.title}</h3>
                     <p className="popular-post-details">
-                      By{" "}
+                      <span className="gray-text">by</span>{" "}
                       <span className="popular-post-author">{blog.author}</span>{" "}
-                      in{" "}
+                      <span className="gray-text">in</span>{" "}
                       <span className="popular-post-category">
                         {blog.category}
                       </span>

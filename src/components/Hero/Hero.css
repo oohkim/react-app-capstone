@@ -14,6 +14,7 @@
   border-radius: 5px;
   padding: 100px;
   overflow: hidden;
+  background-color: #f5f5f5;
 }
 
 .slide-content {
@@ -34,14 +35,20 @@
 }
 
 .date {
-  font-size: 14px;
+  font-size: 12px;
   color: #777;
+  font-style: italic;
 }
 
 .category {
   font-size: 14px;
   color: #777;
   margin-top: 10px;
+  font-weight: bold;
+}
+
+.bold-category {
+  font-weight: bold;
 }
 
 .author {
@@ -62,14 +69,29 @@
 
 .slick-dots {
   text-align: center;
-  margin-top: 20px;
 }
 
 .slick-dots li button:before {
-  font-size: 14px;
+  font-size: 15px;
   color: #777;
+  margin: 50px 0;
 }
 
 .slick-dots li.slick-active button:before {
   color: #73C1C6;
+}
+
+.read-more {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #73C1C6;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-size: 15px;
+}
+
+.read-more:hover {
+  background-color: #48888E;
 }

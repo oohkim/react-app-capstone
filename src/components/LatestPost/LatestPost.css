@@ -9,7 +9,7 @@
 .latest-posts-title {
     font-size: 24px;
     flex: 1;
-    margin: 80px 0 0 90px;
+    margin: 150px 0 0 90px;
 }
 
 .latest-posts {
@@ -178,6 +178,11 @@
 .popular-post-category {
     color: #000;
     font-weight: bold;
+}
+
+.gray-text {
+    color: rgb(101, 101, 101);
+    font-size: 14px;
 }
 
 .popular-post-likes {
