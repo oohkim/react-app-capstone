@@ -1,0 +1,53 @@
+.newsletter {
+    text-align: center;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.newsletter h2 {
+    font-size: 24px;
+    color: #73C1C6;
+}
+
+.newsletter p {
+    font-size: 16px;
+    color: #777;
+    margin-top: 10px;
+}
+
+.newsletter form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.newsletter input[type="email"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.newsletter button {
+    background-color: #73C1C6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.newsletter button:hover {
+    background-color: #5A9DA9;
+}
+
+.custom-input:focus {
+    border-color: #73C1C6;
+    box-shadow: 0 0 5px rgba(115, 193, 198, 0.7);
+    outline: 2px solid #73C1C6;
+}

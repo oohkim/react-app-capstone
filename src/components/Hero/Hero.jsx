@@ -41,8 +41,8 @@ const Hero = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1, // Set the number of slides to show to 1
-    slidesToScroll: 1, // Set the number of slides to scroll to 1
+    slidesToShow: 1,
+    slidesToScroll: 1,
     focusOnSelect: true,
   };
 
