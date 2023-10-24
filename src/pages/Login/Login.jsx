@@ -3,7 +3,7 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
-import loginImage from "../../assets/login.svg";
+import loginImage from "../../assets/login1.svg";
 import googleIcon from "../../assets/google.webp";
 import facebookIcon from "../../assets/facebook.png";
 import linkedinIcon from "../../assets/linkedin.png";
