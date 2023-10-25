@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./Register.css";
+import { Link, useNavigate } from "react-router-dom";import "./Register.css";
 import axios from "axios";
 import googleLogo from "../../assets/google.webp";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Register = () => {
+
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -39,22 +41,28 @@ const Register = () => {
     }
 
     axios
-      .post(`${apiUrl}/api/register`, {
-        first_name: firstName,
-        last_name: lastName,
-        username: username,
-        email: email,
-        password: password,
-        password_confirmation: confirmPassword,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`
+      .post(
+        `${apiUrl}/api/register`,
+        {
+          first_name: firstName,
+          last_name: lastName,
+          username: username,
+          email: email,
+          password: password,
+          password_confirmation: confirmPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      })
+      )
       .then((response) => {
         if (response.data && response.data.success) {
           setRegistrationSuccess(true);
           setRegistrationError(null);
+          navigate("/login");
+          window.alert("You have successfully signed up!");
         } else {
           setRegistrationSuccess(false);
           setRegistrationError(
@@ -80,9 +88,18 @@ const Register = () => {
   return (
     <div className="signup-container">
       <div className="start-text">
-        <h2>WELCOME TO WRITESCAPES! <i className="bx bx-pen" style={{ marginLeft: "8px" }}></i></h2>
-        <p>Let's get you all set up so you can verify your personal account and begin setting up your profile.</p>
-        <p>If you already have an account, you can <Link to="/login">sign in here</Link>.</p>
+        <h2>
+          WELCOME TO WRITESCAPES!{" "}
+          <i className="bx bx-pen" style={{ marginLeft: "8px" }}></i>
+        </h2>
+        <p>
+          Let's get you all set up so you can verify your personal account and
+          begin setting up your profile.
+        </p>
+        <p>
+          If you already have an account, you can{" "}
+          <Link to="/login">sign in here</Link>.
+        </p>
       </div>
       <form onSubmit={handleSubmit} className="signup-form">
         <h2>Create an Account</h2>
@@ -165,15 +182,20 @@ const Register = () => {
           </label>
         </div>
         <p className="terms">
-          By clicking 'Sign Up,' you are acknowledging and accepting our Terms of Service, Privacy Policy, and Cookie Policy.
+          By clicking 'Sign Up,' you are acknowledging and accepting our Terms
+          of Service, Privacy Policy, and Cookie Policy.
         </p>
-        <button className="submit-button" type="submit">
+        <button
+          className="submit-button"
+          type="submit"
+          onClick={() => navigate("/login")}
+        >
           Sign Up
         </button>
 
         <button className="google-signup-button" type="button">
-  <img src={googleLogo} alt="Google Logo" /> Sign up with Google Account
-</button>
+          <img src={googleLogo} alt="Google Logo" /> Sign up with Google Account
+        </button>
       </form>
     </div>
   );
