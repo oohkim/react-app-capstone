@@ -82,7 +82,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsAuthenticated(false);
-    navigate('/');
+    navigate('/login');
   };
 
   return (

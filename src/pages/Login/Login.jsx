@@ -24,7 +24,9 @@ const Login = () => {
   };
 
   const handleLogout = () => {
+    console.log("Logging out...");
     setIsAuthenticated(false);
+    console.log("isAuthenticated set to false");
     navigate("/login");
   };
 
